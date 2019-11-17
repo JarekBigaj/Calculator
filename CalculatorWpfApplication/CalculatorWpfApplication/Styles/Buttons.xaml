@@ -1,0 +1,41 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:CalculatorWpfApplication">
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="Colors.xaml"/>
+        <ResourceDictionary Source="Fonts.xaml"/>
+        <ResourceDictionary Source="Texts.xaml"/>
+    </ResourceDictionary.MergedDictionaries>
+
+    <!-- Standard Buttons -->
+    <Style TargetType="{x:Type Button}">
+        <Setter Property="Background" Value="{StaticResource ForegroundDarkBrush}"/>
+        <Setter Property="Foreground" Value="{StaticResource BackgroundLightBrush}"/>
+        <Setter Property="FontSize" Value="{StaticResource FontSizeLarge}"/>
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="Padding" Value="5"/>
+        <Setter Property="Margin" Value="3"/>
+    </Style>
+    
+    
+    <!-- Signs -->
+    <Style TargetType="{x:Type Button}" x:Key="SignButton">
+        <Setter Property="Background" Value="{StaticResource OrangeBrush}"/>
+        <Setter Property="Foreground" Value="{StaticResource BackgroundLightBrush}"/>
+        <Setter Property="FontSize" Value="{StaticResource FontSizeLarge}"/>
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="Padding" Value="5"/>
+        <Setter Property="Margin" Value="3"/>
+    </Style>
+    
+    <!-- Top Signs -->
+    <Style TargetType="{x:Type Button}" x:Key="SignButtonTop">
+        <Setter Property="Background" Value="{StaticResource BackgroundLightBrush}"/>
+        <Setter Property="Foreground" Value="{StaticResource ForegroundVeryDarkBrush}"/>
+        <Setter Property="FontSize" Value="{StaticResource FontSizeLarge}"/>
+        <Setter Property="BorderThickness" Value="3"/>
+        <Setter Property="BorderBrush" Value="{StaticResource ForegroundDarkBrush}"/>
+        <Setter Property="Padding" Value="5"/>
+        <Setter Property="Margin" Value="3"/>
+    </Style>
+</ResourceDictionary>

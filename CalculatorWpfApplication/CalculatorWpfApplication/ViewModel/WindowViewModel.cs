@@ -33,7 +33,10 @@ namespace CalculatorWpfApplication
 
 
             if (sender != null)
-                MathField = sender.ToString();
+                MathField += sender.ToString();
+
+            if ((sender as string) == "AC")
+                MathField = null;
         }
         
     }

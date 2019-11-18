@@ -46,32 +46,53 @@
             </Grid.RowDefinitions>
             
             <!-- 1st Row -->
-                <Button x:Name="buttonContent" Grid.Column="0" Grid.Row="0" Content="AC" Style="{StaticResource SignButtonTop}"
-                   Command="{Binding DisplayMessageCommand}" CommandParameter="{Binding ElementName=buttonContent, Path=Content}"/>
-                <Button Grid.Column="1" Grid.Row="0" Content="+/-" Style="{StaticResource SignButtonTop}"/>
+            <Button x:Name="buttonContent" Grid.Column="0" Grid.Row="0" Content="AC" Style="{StaticResource SignButtonTop}"
+                   Command="{Binding DisplayMessageCommand}" 
+                    CommandParameter="{Binding RelativeSource={x:Static RelativeSource.Self}, Path=Content}"/>
+            <Button Grid.Column="1" Grid.Row="0" Content="+/-" Style="{StaticResource SignButtonTop}"/>
             <Button Grid.Column="2" Grid.Row="0" Content="%" Style="{StaticResource SignButtonTop}"/>
             <Button Grid.Column="3" Grid.Row="0" Content="/" Style="{StaticResource SignButton}"/>
             
             <!-- 2nd Row -->
-            <Button Grid.Column="0" Grid.Row="1" Content="7" />
-            <Button Grid.Column="1" Grid.Row="1" Content="8"/>
-            <Button Grid.Column="2" Grid.Row="1" Content="9"/>
+            <Button Grid.Column="0" Grid.Row="1" Content="7"
+                    Command="{Binding DisplayMessageCommand}" 
+                    CommandParameter="{Binding RelativeSource={x:Static RelativeSource.Self}, Path=Content}"/>
+            <Button Grid.Column="1" Grid.Row="1" Content="8"
+                    Command="{Binding DisplayMessageCommand}" 
+                    CommandParameter="{Binding RelativeSource={x:Static RelativeSource.Self}, Path=Content}"/>
+            <Button Grid.Column="2" Grid.Row="1" Content="9"
+                    Command="{Binding DisplayMessageCommand}" 
+                    CommandParameter="{Binding RelativeSource={x:Static RelativeSource.Self}, Path=Content}"/>
             <Button Grid.Column="3" Grid.Row="1" Content="*" Style="{StaticResource SignButton}"/>
             
             <!-- 3rd Row -->
-            <Button Grid.Column="0" Grid.Row="2" Content="4" />
-            <Button Grid.Column="1" Grid.Row="2" Content="5"/>
-            <Button Grid.Column="2" Grid.Row="2" Content="6"/>
+            <Button Grid.Column="0" Grid.Row="2" Content="4" 
+                    Command="{Binding DisplayMessageCommand}" 
+                    CommandParameter="{Binding RelativeSource={x:Static RelativeSource.Self}, Path=Content}"/>
+            <Button Grid.Column="1" Grid.Row="2" Content="5"
+                    Command="{Binding DisplayMessageCommand}" 
+                    CommandParameter="{Binding RelativeSource={x:Static RelativeSource.Self}, Path=Content}"/>
+            <Button Grid.Column="2" Grid.Row="2" Content="6"
+                    Command="{Binding DisplayMessageCommand}" 
+                    CommandParameter="{Binding RelativeSource={x:Static RelativeSource.Self}, Path=Content}"/>
             <Button Grid.Column="3" Grid.Row="2" Content="-" Style="{StaticResource SignButton}"/>
 
             <!-- 4th Row -->
-            <Button Grid.Column="0" Grid.Row="3" Content="1" />
-            <Button Grid.Column="1" Grid.Row="3" Content="2"/>
-            <Button Grid.Column="2" Grid.Row="3" Content="3"/>
+            <Button Grid.Column="0" Grid.Row="3" Content="1" 
+                    Command="{Binding DisplayMessageCommand}" 
+                    CommandParameter="{Binding RelativeSource={x:Static RelativeSource.Self}, Path=Content}"/>
+            <Button Grid.Column="1" Grid.Row="3" Content="2"
+                    Command="{Binding DisplayMessageCommand}" 
+                    CommandParameter="{Binding RelativeSource={x:Static RelativeSource.Self}, Path=Content}"/>
+            <Button Grid.Column="2" Grid.Row="3" Content="3"
+                    Command="{Binding DisplayMessageCommand}" 
+                    CommandParameter="{Binding RelativeSource={x:Static RelativeSource.Self}, Path=Content}"/>
             <Button Grid.Column="3" Grid.Row="3" Content="+" Style="{StaticResource SignButton}"/>
 
             <!-- 5th Row -->
-            <Button Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="4" Content="0"/>
+            <Button Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="4" Content="0"
+                    Command="{Binding DisplayMessageCommand}" 
+                    CommandParameter="{Binding RelativeSource={x:Static RelativeSource.Self}, Path=Content}"/>
             <Button Grid.Column="2" Grid.Row="4" Content="."/>
             <Button Grid.Column="3" Grid.Row="4" Content="=" Style="{StaticResource SignButton}"/>
 

@@ -8,7 +8,7 @@
     </ResourceDictionary.MergedDictionaries>
 
     <!-- Standard Buttons -->
-    <Style TargetType="{x:Type Button}">
+    <Style TargetType="{x:Type Button}" x:Name="StandardButtonContent">
         <Setter Property="Background" Value="{StaticResource ForegroundDarkBrush}"/>
         <Setter Property="Foreground" Value="{StaticResource BackgroundLightBrush}"/>
         <Setter Property="FontSize" Value="{StaticResource FontSizeLarge}"/>

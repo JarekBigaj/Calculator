@@ -25,7 +25,7 @@
             </Grid.RowDefinitions>
 
             <!-- Mathematical operation -->
-            <TextBox Grid.Row="0"/>
+            <TextBox Grid.Row="0" Text="{Binding MathField}"/>
             <TextBox Grid.Row="1" />
 
         </Grid>
@@ -46,8 +46,8 @@
             </Grid.RowDefinitions>
             
             <!-- 1st Row -->
-                <Button Grid.Column="0" Grid.Row="0" Content="AC" Style="{StaticResource SignButtonTop}"
-                   Command="{Binding ExecuteCommand}" />
+                <Button x:Name="buttonContent" Grid.Column="0" Grid.Row="0" Content="AC" Style="{StaticResource SignButtonTop}"
+                   Command="{Binding DisplayMessageCommand}" CommandParameter="{Binding ElementName=buttonContent, Path=Content}"/>
                 <Button Grid.Column="1" Grid.Row="0" Content="+/-" Style="{StaticResource SignButtonTop}"/>
             <Button Grid.Column="2" Grid.Row="0" Content="%" Style="{StaticResource SignButtonTop}"/>
             <Button Grid.Column="3" Grid.Row="0" Content="/" Style="{StaticResource SignButton}"/>

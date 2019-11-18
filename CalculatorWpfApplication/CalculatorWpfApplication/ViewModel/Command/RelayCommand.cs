@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Windows.Controls;
 using System.Windows.Input;
 
 namespace CalculatorWpfApplication
@@ -7,7 +8,7 @@ namespace CalculatorWpfApplication
     {
         #region Private Members
 
-        private Action mAction;
+        private Action<object> mAction;
 
         #endregion
 
@@ -19,7 +20,7 @@ namespace CalculatorWpfApplication
 
         #region Constructor
 
-        public RelayCommand(Action action) => mAction = action;
+        public RelayCommand(Action<object> action) => mAction = action;
 
 
         #endregion
@@ -34,7 +35,7 @@ namespace CalculatorWpfApplication
 
         public void Execute(object parameter)
         {
-            mAction();
+            mAction(parameter);
         }
 
         #endregion

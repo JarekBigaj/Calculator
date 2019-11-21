@@ -46,8 +46,8 @@
             </Grid.RowDefinitions>
             
             <!-- 1st Row -->
-            <Button x:Name="buttonContent" Grid.Column="0" Grid.Row="0" Content="AC" Style="{StaticResource SignButtonTop}"
-                   Command="{Binding DisplayMessageCommand}" 
+            <Button Grid.Column="0" Grid.Row="0" Content="AC" Style="{StaticResource SignButtonTop}"
+                    Command="{Binding DisplayMessageCommand}" 
                     CommandParameter="{Binding RelativeSource={x:Static RelativeSource.Self}, Path=Content}"/>
             <Button Grid.Column="1" Grid.Row="0" Content="+/-" Style="{StaticResource SignButtonTop}"/>
             <Button Grid.Column="2" Grid.Row="0" Content="%" Style="{StaticResource SignButtonTop}"/>
@@ -87,7 +87,9 @@
             <Button Grid.Column="2" Grid.Row="3" Content="3"
                     Command="{Binding DisplayMessageCommand}" 
                     CommandParameter="{Binding RelativeSource={x:Static RelativeSource.Self}, Path=Content}"/>
-            <Button Grid.Column="3" Grid.Row="3" Content="+" Style="{StaticResource SignButton}"/>
+            <Button Grid.Column="3" Grid.Row="3" Content="+" Style="{StaticResource SignButton}"
+                    Command="{Binding DisplayMessageCommand}"
+                    CommandParameter="{Binding RelativeSource={x:Static RelativeSource.Self}, Path=Content}"/>
 
             <!-- 5th Row -->
             <Button Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="4" Content="0"

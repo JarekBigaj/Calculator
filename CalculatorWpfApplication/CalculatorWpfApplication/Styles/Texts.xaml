@@ -11,6 +11,7 @@
         <Setter Property="Margin" Value="5" />
         <Setter Property="BorderThickness" Value="0"/>
         <Setter Property="IsReadOnly" Value="True"/>
+        <Setter Property="TextAlignment" Value="Right"/>
     </Style>
 
 </ResourceDictionary>

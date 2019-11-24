@@ -13,7 +13,8 @@ namespace CalculatorWpfApplication
         public double MinimumWindowHeight = 550;
 
         public string MathField { get; set; } = "0";
-        public int CalculationResult { get; set; } = 0;
+        public string SecondMathField { get; set; }
+        public double CalculationResult { get; set; } = 0;
 
        
         public ICommand DisplayMessageCommand { get; }
@@ -26,38 +27,15 @@ namespace CalculatorWpfApplication
         }
 
         
-
+        
 
         public void DisplayMessage(object sender)
         {
-
-            if (MathField == "0")
-                MathField = MathOperationsViewModel.InputNumber(sender as string);
-            else
-            {
-                if (sender as string == "+" )
-                {
-                    int helperVariable = Int32.Parse(MathField);
-                    MathField = null;
-                    CalculationResult = MathOperationsViewModel.AdditionOperation(helperVariable, CalculationResult);
-                    MathField = CalculationResult.ToString();
-                }
-                else
-                    MathField += MathOperationsViewModel.InputNumber(sender as string);
-            }
-
-
-            // if ((sender as string) == "+")
-            // {
-            //     
-            //     CalculationResult = MathExpressionsLogic.Addition(helperVariable, CalculationResult);
-            //     MathField = CalculationResult.ToString();
-            // }
-            // else
-            //
-            //
-            // if ((sender as string) == "AC")
-            //     MathField = "0";
+            SecondMathField += sender as string;
+            MathField = MathOperationsViewModel.InputNumber(sender as string, MathField,CalculationResult);
+            if (sender as string == "+")
+                CalculationResult = Convert.ToDouble(MathField);
+            
 
         }
         

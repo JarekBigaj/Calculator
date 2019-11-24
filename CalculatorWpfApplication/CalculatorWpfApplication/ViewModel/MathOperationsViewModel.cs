@@ -1,17 +1,42 @@
-﻿namespace CalculatorWpfApplication
+﻿using System;
+
+namespace CalculatorWpfApplication
 {
     class MathOperationsViewModel : BaseViewModel
     {
-        public static string InputNumber(string number) 
+
+        public static bool anyOperators = false;
+        public static string InputNumber(string number , string field , double result ) 
         {
-            if (number != null)
+            if (number == "AC")
+                return "0";
+
+
+            if (number != null && field != "0" && number != "+" && number != "=" && anyOperators != true)
+                return field + number;
+            else if (number == "+" || number == "=")
+            {
+                anyOperators = true;
+                return AdditionOperation(field, result);
+            }
+            else if (field == "0" || anyOperators)
+            {
+                anyOperators = false;
                 return number;
-            return "0";
+            }
+
+
+            return field;
         }
 
-        public static int AdditionOperation(int element, int result)
+        public static string AdditionOperation(string element, double result)
         {
-            return MathExpressionsLogic.Addition(element, result);
+            double Element = Convert.ToDouble(element);
+            return MathExpressionsLogic.Addition(Element, result).ToString();
+        }
+
+        public MathOperationsViewModel()
+        {
         }
     }
 }

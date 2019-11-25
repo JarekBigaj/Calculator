@@ -52,7 +52,9 @@
                     CommandParameter="{Binding RelativeSource={x:Static RelativeSource.Self}, Path=Content}"/>
             <Button Grid.Column="1" Grid.Row="0" Content="+/-" Style="{StaticResource SignButtonTop}"/>
             <Button Grid.Column="2" Grid.Row="0" Content="%" Style="{StaticResource SignButtonTop}"/>
-            <Button Grid.Column="3" Grid.Row="0" Content="/" Style="{StaticResource SignButton}"/>
+            <Button Grid.Column="3" Grid.Row="0" Content="/" Style="{StaticResource SignButton}"
+                    Command="{Binding DisplayMessageCommand}"
+                    CommandParameter="{Binding RelativeSource={x:Static RelativeSource.Self}, Path=Content}"/>
             
             <!-- 2nd Row -->
             <Button Grid.Column="0" Grid.Row="1" Content="7"
@@ -64,7 +66,9 @@
             <Button Grid.Column="2" Grid.Row="1" Content="9"
                     Command="{Binding DisplayMessageCommand}" 
                     CommandParameter="{Binding RelativeSource={x:Static RelativeSource.Self}, Path=Content}"/>
-            <Button Grid.Column="3" Grid.Row="1" Content="*" Style="{StaticResource SignButton}"/>
+            <Button Grid.Column="3" Grid.Row="1" Content="*" Style="{StaticResource SignButton}"
+                    Command="{Binding DisplayMessageCommand}"
+                    CommandParameter="{Binding RelativeSource={x:Static RelativeSource.Self}, Path=Content}"/>
             
             <!-- 3rd Row -->
             <Button Grid.Column="0" Grid.Row="2" Content="4" 
@@ -76,7 +80,9 @@
             <Button Grid.Column="2" Grid.Row="2" Content="6"
                     Command="{Binding DisplayMessageCommand}" 
                     CommandParameter="{Binding RelativeSource={x:Static RelativeSource.Self}, Path=Content}"/>
-            <Button Grid.Column="3" Grid.Row="2" Content="-" Style="{StaticResource SignButton}"/>
+            <Button Grid.Column="3" Grid.Row="2" Content="-" Style="{StaticResource SignButton}"
+                    Command="{Binding DisplayMessageCommand}" 
+                    CommandParameter="{Binding RelativeSource={x:Static RelativeSource.Self}, Path=Content}"/>
 
             <!-- 4th Row -->
             <Button Grid.Column="0" Grid.Row="3" Content="1" 

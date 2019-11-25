@@ -2,7 +2,7 @@
 
 namespace CalculatorWpfApplication
 {
-    class MathOperationsViewModel : BaseViewModel
+    public class MathOperationsViewModel : BaseViewModel
     {
 
         public static bool anyOperators = false;
@@ -12,12 +12,27 @@ namespace CalculatorWpfApplication
                 return "0";
 
 
-            if (number != null && field != "0" && number != "+" && number != "=" && anyOperators != true)
+            if (number != null && field != "0" && number != "+" && number!="-" && number != "=" && number != "*" && number != "/" && anyOperators != true)
                 return field + number;
-            else if (number == "+" || number == "=")
+            else if (number == "+" || number == "=" )
             {
                 anyOperators = true;
                 return AdditionOperation(field, result);
+            }
+            else if (number == "-")
+            {
+                anyOperators = true;
+                return SubtractionOperation(field, result);
+            }
+            else if (number == "*")
+            {
+                anyOperators = true;
+                return MultiplicationOperation(field, result);
+            }
+            else if (number == "/")
+            {
+                anyOperators = true;
+                return DivisionOperation(field, result);
             }
             else if (field == "0" || anyOperators)
             {
@@ -29,14 +44,30 @@ namespace CalculatorWpfApplication
             return field;
         }
 
-        public static string AdditionOperation(string element, double result)
+        private static string SubtractionOperation(string element, double result)
+        {
+            double Element = Convert.ToDouble(element);
+            return MathExpressionsLogic.Subtraction(Element, result).ToString();
+        }
+
+        private static string AdditionOperation(string element, double result)
         {
             double Element = Convert.ToDouble(element);
             return MathExpressionsLogic.Addition(Element, result).ToString();
         }
 
-        public MathOperationsViewModel()
+        private static string MultiplicationOperation(string element, double result)
         {
+            double Element = Convert.ToDouble(element);
+            return MathExpressionsLogic.Subtraction(Element, result).ToString();
         }
+
+        private static string DivisionOperation(string element, double result)
+        {
+            double Element = Convert.ToDouble(element);
+            return MathExpressionsLogic.Addition(Element, result).ToString();
+        }
+
+
     }
 }

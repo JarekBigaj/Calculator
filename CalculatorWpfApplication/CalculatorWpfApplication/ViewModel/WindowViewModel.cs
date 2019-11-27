@@ -33,15 +33,16 @@ namespace CalculatorWpfApplication
         {
             SecondMathField += sender as string;
 
-            MathField = MathOperationsViewModel.InputNumber(sender as string, MathField,CalculationResult);
-            if (sender as string == "+" || sender as string =="-" || sender as string == "*" || sender as string == "/")
-                CalculationResult = Convert.ToDouble(MathField);
-            if (sender as string == "=")
-                SecondMathField += MathField;
-            if (sender as string == "AC")
-                SecondMathField = MathField;
+            CalculationResult = MathOperationsViewModel.SendResult(MathField, CalculationResult);
 
+            MathField = MathOperationsViewModel.InputNumber(sender as string, MathField, CalculationResult);
 
+            
+            if (sender.ToString() == "+")
+                Console.WriteLine("+");
+            else
+            Console.WriteLine("MathField "+ MathField);
+            Console.WriteLine("CalculationResult " + CalculationResult);
         }
         
     }

@@ -17,10 +17,14 @@
         /// <summary>
         /// Addition
         /// </summary>
-        MultiplicationOperation = 1,
+        MultiplicationOperation = 3,
         /// <summary>
         /// Subtraction
         /// </summary>
-        DivisionOperation = 2,
+        DivisionOperation = 4,
+        /// <summary>
+        /// Input a single number to create a string of numbers
+        /// </summary>
+        CreateNumber=5,
     }
 }

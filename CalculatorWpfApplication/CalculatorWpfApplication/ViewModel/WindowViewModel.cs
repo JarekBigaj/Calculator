@@ -35,7 +35,7 @@ namespace CalculatorWpfApplication
 
             CalculationResult = MathOperationsViewModel.SendResult(MathField, CalculationResult);
 
-            MathField = MathOperationsViewModel.InputNumber(sender as string, MathField, CalculationResult);
+            MathField = MathOperationsViewModel.InputNumber(sender as string, MathField, CalculationResult , SecondMathField);
 
             
             if (sender.ToString() == "+")

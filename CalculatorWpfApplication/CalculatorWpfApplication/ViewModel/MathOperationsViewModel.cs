@@ -4,38 +4,80 @@ namespace CalculatorWpfApplication
 {
     public class MathOperationsViewModel : BaseViewModel
     {
-
-        public static bool anyOperators = false;
-        public static bool firstOperation = true;
-        public static string lastOperator = null;
-        public static bool anotherOperator = false;
+        // checks last insert operators , change to true if there are any operators
+        public static bool anyOperators { get; set; } = false;
+        // cheks last operation if its first operation set a true  
+        public static bool firstOperation { get; set; } = true;
+        // check last Operator and set it as last operator
+        public static string lastOperator { get; set; } = null;
+        // check last operator if its different from the current set true
+        public static bool anotherOperator { get; set; } = false;
+        // set last element send there 
+        public static string lastElement { get; set; }
         
         public static string InputNumber(string number, string field, double result, string secondField)
         {
+            if(anyOperators == false)
+                lastElement = field;
             switch (number)
             {
                 case "+":
-                    if (lastOperator == "-")
+                    if (lastOperator == "-" || lastOperator == "*" || lastOperator == "/")
                         anotherOperator = true;
                     lastOperator = number;
+                    if (lastOperator == "+")
+                        field = lastElement;
                     anyOperators = true;
                     return AdditionOperation(field, result);
 
                 case "-":
+                    if (lastOperator == "+" || lastOperator == "*" || lastOperator == "/")
+                        anotherOperator = true;
                     lastOperator = number;
+                    if (lastOperator == "-")                   
+                        field = lastElement;
                     anyOperators = true;
                     return SubtractionOperation(field, result);
 
-                case "=":  
+                case "*":
+                    if (lastOperator == "+" || lastOperator =="-" || lastOperator == "/")
+                        anotherOperator = true;
+                    lastOperator = number;
+                    if (lastOperator == "*")
+                        field = lastElement;
+                    anyOperators = true;
+                    return MultiplicationOperation(field, result);
+
+                case "/":
+                    if (lastOperator == "+" || lastOperator == "-" || lastOperator == "*")
+                        anotherOperator = true;
+                    lastOperator = number;
+                    if (lastOperator == "/")
+                        field = lastElement;
+                    anyOperators = true;
+                    return DivisionOperation(field, result);
+
+                case "=":
+                    if (anyOperators)
+                        field = lastElement;
                     return LastOperation(lastOperator , field , result);
 
+
+
+                case "AC":
+                    return "0";
+
                 default:
+                    if (field == "Error")
+                        field = "0";
                     return CreateNumber(number, field, secondField);
             }
         }
 
         public static double SendResult(string mathField, double calculationResult)
         {
+            if (mathField == "Error")
+                mathField = "0";
             if (anyOperators)
                 return Convert.ToDouble(mathField);
 
@@ -46,7 +88,10 @@ namespace CalculatorWpfApplication
         {
             double Element = Convert.ToDouble(element);
             if (firstOperation)
+            {
+                firstOperation = false;
                 return element;
+            }
 
             return MathExpressionsLogic.Subtraction(Element, result).ToString();
         }
@@ -67,13 +112,25 @@ namespace CalculatorWpfApplication
         private static string MultiplicationOperation(string element, double result)
         {
             double Element = Convert.ToDouble(element);
-            return MathExpressionsLogic.Subtraction(Element, result).ToString();
+            if (firstOperation)
+            {
+                firstOperation = false;
+                return element;
+            }
+            return MathExpressionsLogic.Multiplication(Element, result).ToString();
         }
 
         private static string DivisionOperation(string element, double result)
         {
             double Element = Convert.ToDouble(element);
-            return MathExpressionsLogic.Addition(Element, result).ToString();
+            if (Element == 0)
+                return "Error";
+            if (firstOperation)
+            {
+                firstOperation = false;
+                return element;
+            }
+            return MathExpressionsLogic.Division(Element, result).ToString();
         }
 
         private static string CreateNumber(string number, string field, string secondField)
@@ -82,12 +139,12 @@ namespace CalculatorWpfApplication
             if (anyOperators)
             {
                 anyOperators = false;
-                firstOperation = false;
                 return number;
             }
 
             if (field == secondField)
                 firstOperation = true;
+
 
             if (field != "0")
                 return field += number;
@@ -104,6 +161,8 @@ namespace CalculatorWpfApplication
                     return AdditionOperation(field, result);
                 case "-":
                     return SubtractionOperation(field, result);
+                case "*":
+                    return MultiplicationOperation(field, result);
 
                 default:
                     return null;

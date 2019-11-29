@@ -31,7 +31,10 @@ namespace CalculatorWpfApplication
 
         public void DisplayMessage(object sender)
         {
-            SecondMathField += sender as string;
+            if (sender as string == "AC")
+                SecondMathField = null;
+            else
+                SecondMathField += sender as string;
 
             CalculationResult = MathOperationsViewModel.SendResult(MathField, CalculationResult);
 

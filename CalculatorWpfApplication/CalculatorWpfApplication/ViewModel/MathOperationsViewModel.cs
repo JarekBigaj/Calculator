@@ -14,6 +14,10 @@ namespace CalculatorWpfApplication
         public static bool anotherOperator { get; set; } = false;
         // set last element send there 
         public static string lastElement { get; set; }
+        // check , if last operator is equals set true
+        public static bool equalOperator { get; set; } = false;
+
+        public static string differentOperator { get; set; }
         
         public static string InputNumber(string number, string field, double result, string secondField)
         {
@@ -50,7 +54,10 @@ namespace CalculatorWpfApplication
 
                 case "/":
                     if (lastOperator == "+" || lastOperator == "-" || lastOperator == "*")
+                    { 
                         anotherOperator = true;
+                        differentOperator = lastOperator;
+                    }
                     lastOperator = number;
                     if (lastOperator == "/")
                         field = lastElement;
@@ -60,11 +67,13 @@ namespace CalculatorWpfApplication
                 case "=":
                     if (anyOperators)
                         field = lastElement;
+                    equalOperator = true;
                     return LastOperation(lastOperator , field , result);
 
 
 
                 case "AC":
+                    firstOperation = true;
                     return "0";
 
                 default:
@@ -78,6 +87,12 @@ namespace CalculatorWpfApplication
         {
             if (mathField == "Error")
                 mathField = "0";
+            if (equalOperator)
+            {
+                equalOperator = false;
+                firstOperation = true;
+                return Convert.ToDouble(mathField);
+            }
             if (anyOperators)
                 return Convert.ToDouble(mathField);
 
@@ -87,11 +102,12 @@ namespace CalculatorWpfApplication
         private static string SubtractionOperation(string element, double result)
         {
             double Element = Convert.ToDouble(element);
-            if (firstOperation)
+            if (firstOperation )
             {
                 firstOperation = false;
                 return element;
             }
+
 
             return MathExpressionsLogic.Subtraction(Element, result).ToString();
         }
@@ -99,7 +115,7 @@ namespace CalculatorWpfApplication
         private static string AdditionOperation(string element, double result)
         {
             double Element = Convert.ToDouble(element);
-            if (anotherOperator)
+            if (anotherOperator && equalOperator!=true)
             {
                 anotherOperator = false;
                 return MathExpressionsLogic.Addition(-Element, result).ToString();
@@ -130,6 +146,11 @@ namespace CalculatorWpfApplication
                 firstOperation = false;
                 return element;
             }
+            if (anotherOperator)
+            {
+                anotherOperator = false;
+                return LastOperation(differentOperator, element, result);
+            }
             return MathExpressionsLogic.Division(Element, result).ToString();
         }
 
@@ -146,7 +167,7 @@ namespace CalculatorWpfApplication
                 firstOperation = true;
 
 
-            if (field != "0")
+            if (field != "0" )
                 return field += number;
 
 
@@ -163,6 +184,9 @@ namespace CalculatorWpfApplication
                     return SubtractionOperation(field, result);
                 case "*":
                     return MultiplicationOperation(field, result);
+                case "/":
+                    return DivisionOperation(field, result);
+                    
 
                 default:
                     return null;

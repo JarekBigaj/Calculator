@@ -31,16 +31,21 @@ namespace CalculatorWpfApplication
 
         public void DisplayMessage(object sender)
         {
-            if (sender as string == "AC")
+            if (sender as string == "AC" || sender as string == "=")
                 SecondMathField = null;
             else
                 SecondMathField += sender as string;
 
-            CalculationResult = MathOperationsViewModel.SendResult(MathField, CalculationResult);
+            
 
             MathField = MathOperationsViewModel.InputNumber(sender as string, MathField, CalculationResult , SecondMathField);
+            if (sender as string != "AC")
+                CalculationResult = MathOperationsViewModel.SendResult(MathField, CalculationResult);
+            else
+                CalculationResult = 0;
 
-            
+
+
             if (sender.ToString() == "+")
                 Console.WriteLine("+");
             else

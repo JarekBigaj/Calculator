@@ -1,57 +1,56 @@
-﻿using System;
-using System.Windows;
-using System.Windows.Controls;
+﻿using System.Windows;
 using System.Windows.Input;
 
 namespace CalculatorWpfApplication
 {
 
-    public class WindowViewModel : BaseViewModel
+    class WindowViewModel : BaseViewModel
     {
-        private Window mWindow;
+        #region Private properties
+        private Window mWindow { get; set; }
+        #endregion
 
-        public double MinimumWindowHeight = 550;
+        #region Window Properties
+        public double MinimumWindowHeight { get; set; } = 550;
+        #endregion
 
+        #region Math Operations Properties
+        public MathOperations mathOperations { get; set; }
         public string MathField { get; set; } = "0";
-        public string SecondMathField { get; set; }
-        public double CalculationResult { get; set; } = 0;
+        public string savedElement { get; set; }
 
-       
+        public bool isAfterAnyOperator { get; set; } = false;
+        #endregion
+
+        #region Command Properties
         public ICommand DisplayMessageCommand { get; }
 
+        #endregion
 
+        #region Constructor
         public WindowViewModel(Window window)
         {
             mWindow = window;
             DisplayMessageCommand = new RelayCommand(DisplayMessage);
         }
+        #endregion
 
-        
-        
+        #region Helper Methods
 
+        #endregion
         public void DisplayMessage(object sender)
         {
-            if (sender as string == "AC" || sender as string == "=")
-                SecondMathField = null;
-            else
-                SecondMathField += sender as string;
+            mathOperations = new MathOperations(sender as string , MathField, savedElement , isAfterAnyOperator);
+            mathOperations.IncludesExpression();
+            MathField = mathOperations.CreateElement();
 
-            
+            if (mathOperations.IsDone)
+                savedElement = MathField;
 
-            MathField = MathOperationsViewModel.InputNumber(sender as string, MathField, CalculationResult , SecondMathField);
-            if (sender as string != "AC")
-                CalculationResult = MathOperationsViewModel.SendResult(MathField, CalculationResult);
-            else
-                CalculationResult = 0;
+            isAfterAnyOperator = mathOperations.IsAnyOperators(sender as string);
 
 
-
-            if (sender.ToString() == "+")
-                Console.WriteLine("+");
-            else
-            Console.WriteLine("MathField "+ MathField);
-            Console.WriteLine("CalculationResult " + CalculationResult);
         }
-        
+
     }
 }

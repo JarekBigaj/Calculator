@@ -66,11 +66,13 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="MathOperations\Logic\MathExpressionsLogic.cs" />
-    <Compile Include="MathOperations\MathOperation.cs" />
+    <Compile Include="MathematicalOperation\Interface\MathOperationsState.cs" />
+    <Compile Include="MathematicalOperation\Logic\MathExpressionsLogic.cs" />
+    <Compile Include="MathematicalOperation\MathOperations.cs" />
+    <Compile Include="MathematicalOperation\State\ElementState.cs" />
+    <Compile Include="MathematicalOperation\State\ResultState.cs" />
     <Compile Include="ViewModel\Base\BaseViewModel.cs" />
     <Compile Include="ViewModel\Command\RelayCommand.cs" />
-    <Compile Include="ViewModel\MathOperationsViewModel.cs" />
     <Compile Include="ViewModel\WindowViewModel.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
